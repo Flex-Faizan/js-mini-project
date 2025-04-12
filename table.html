@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dynamic Table</title>
+    <style>
+        table td,
+        table th {
+            white-space: nowrap;
+        }
+        .freezeTbl .tblOuter {
+            height: calc(100% - 20px);
+            overflow: scroll;
+        }
+        .scrollTbl .tblOuter {
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            overflow: scroll;
+        }
+        .rightSlider .childDiv {
+            height: 1500px;
+            width: 20px;
+            position: relative;
+        }
+        #bottomSlider .forBottam {
+            height: 20px;
+            width: 1500px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div id="gridJsX"></div>
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        "use strict";
+        let obj_1 = {
+            header: [
+                { "sno": "S.No", "width": "100px" },
+                { "name": "Name", "width": "200px" }
+            ],
+            feilds: [
+                { "sno": 1, "name": "CHIN YEN" },
+                { "sno": 2, "name": "MIKE PEARL" },
+                { "sno": 3, "name": "GREEN FIELD" },
+                { "sno": 4, "name": "DEWANE PAUL" },
+                { "sno": 5, "name": "MATTS" },
+                { "sno": 6, "name": "PLANK OTO" },
+                { "sno": 7, "name": "MATTS" },
+                { "sno": 8, "name": "MIKE PEARL" },
+                { "sno": 9, "name": "GREEN FIELD" },
+                { "sno": 10, "name": "DEWANE PAUL" },
+                { "sno": 11, "name": "CHIN YEN" },
+                { "sno": 12, "name": "MIKE PEARL" },
+                { "sno": 13, "name": "MATTS" },
+                { "sno": 14, "name": "MIKE PEARL" },
+                { "sno": 15, "name": "CHIN YEN" },
+                { "sno": 16, "name": "MATTS" },
+                { "sno": 17, "name": "DEWANE PAUL" },
+                { "sno": 18, "name": "MIKE PEARL" },
+                { "sno": 19, "name": "CHIN YEN" },
+                { "sno": 20, "name": "DEWANE PAUL" },
+                { "sno": 21, "name": "CHIN YEN" },
+                { "sno": 22, "name": "MIKE PEARL" },
+                { "sno": 23, "name": "GREEN FIELD" },
+                { "sno": 24, "name": "DEWANE PAUL" },
+                { "sno": 25, "name": "MATTS" },
+                { "sno": 26, "name": "PLANK OTO" },
+                { "sno": 27, "name": "MATTS" },
+                { "sno": 28, "name": "MIKE PEARL" },
+                { "sno": 29, "name": "GREEN FIELD" },
+                { "sno": 30, "name": "DEWANE PAUL" },
+                { "sno": 31, "name": "CHIN YEN" },
+                { "sno": 32, "name": "MIKE PEARL" },
+                { "sno": 33, "name": "MATTS" },
+                { "sno": 34, "name": "MIKE PEARL" },
+                { "sno": 35, "name": "CHIN YEN" },
+                { "sno": 36, "name": "MATTS" },
+                { "sno": 37, "name": "DEWANE PAUL" },
+                { "sno": 38, "name": "MIKE PEARL" },
+                { "sno": 39, "name": "CHIN YEN" },
+                { "sno": 40, "name": "DEWANE PAUL" },
+                { "sno": 41, "name": "CHIN YEN" },
+                { "sno": 42, "name": "MIKE PEARL" },
+                { "sno": 43, "name": "GREEN FIELD" },
+                { "sno": 44, "name": "DEWANE PAUL" },
+                { "sno": 45, "name": "MATTS" },
+                { "sno": 46, "name": "PLANK OTO" },
+                { "sno": 47, "name": "MATTS" },
+                { "sno": 48, "name": "MIKE PEARL" },
+                { "sno": 49, "name": "GREEN FIELD" },
+                { "sno": 50, "name": "DEWANE PAUL" },
+            ]
+        }
+        let obj_2 = {
+            header: [
+                { "sno": "S.No", "width": "250px" },
+                { "ptitle": "Product Title", "width": "250px" },
+                { "catetory": "Category", "width": "220px" },
+                { "sku": "SKU", "width": "150px" },
+                { "stock": "Stock", "width": "200px" },
+                { "price": "Price", "width": "150px" },
+                { "pdetail": "Product Detail", "width": "200px" },
+                { "quanty": "Quantity", "width": "150px" },
+                { "adCart": "Action", "width": "150px" },
+                { "qview": "Quick View", "width": "180px" },
+                { "offers": "Offers", "width": "150px" },
+
+            ],
+            feilds: [
+                { "sno": 1, "ptitle": "Bag", "catetory": "Accessories", "sku": "0045", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 2, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0044", "stock": "in Stock", "price": "$180", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 3, "ptitle": "Cap", "catetory": "Accessories", "sku": "0046", "stock": "in Stock", "price": "$200", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 4, "ptitle": "Belt", "catetory": "Accessories", "sku": "0048", "stock": "in Stock", "price": "$155", "pdetail": "Lather", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 5, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0049", "stock": "in Stock", "price": "$250", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 6, "ptitle": "Bag", "catetory": "Accessories", "sku": "0042", "stock": "in Stock", "price": "$100", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 7, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0043", "stock": "in Stock", "price": "$290", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 8, "ptitle": "Cap", "catetory": "Accessories", "sku": "0050", "stock": "in Stock", "price": "$80", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 9, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0051", "stock": "in Stock", "price": "$350", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 10, "ptitle": "Wooden Wall Clock", "catetory": "Accessories", "sku": "0052", "stock": "in Stock", "price": "$555", "pdetail": "Wooden", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 11, "ptitle": "Bag", "catetory": "Accessories", "sku": "0056", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 12, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0058", "stock": "in Stock", "price": "$290", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 13, "ptitle": "Cap", "catetory": "Accessories", "sku": "0059", "stock": "in Stock", "price": "$200", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 14, "ptitle": "Belt", "catetory": "Accessories", "sku": "0060", "stock": "in Stock", "price": "$100", "pdetail": "Lather", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 15, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0061", "stock": "in Stock", "price": "$290", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 16, "ptitle": "Bag", "catetory": "Accessories", "sku": "0062", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 17, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0063", "stock": "in Stock", "price": "$150", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 18, "ptitle": "Cap", "catetory": "Accessories", "sku": "0064", "stock": "in Stock", "price": "$100", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 19, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0065", "stock": "in Stock", "price": "$550", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 20, "ptitle": "Wooden Wall Clock", "catetory": "Accessories", "sku": "0066", "stock": "in Stock", "price": "$555", "pdetail": "Wooden", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 21, "ptitle": "Bag", "catetory": "Accessories", "sku": "0045", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 12, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0044", "stock": "in Stock", "price": "$180", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 23, "ptitle": "Cap", "catetory": "Accessories", "sku": "0046", "stock": "in Stock", "price": "$200", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 24, "ptitle": "Belt", "catetory": "Accessories", "sku": "0048", "stock": "in Stock", "price": "$155", "pdetail": "Lather", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 25, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0049", "stock": "in Stock", "price": "$250", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 26, "ptitle": "Bag", "catetory": "Accessories", "sku": "0042", "stock": "in Stock", "price": "$100", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 27, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0043", "stock": "in Stock", "price": "$290", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 28, "ptitle": "Cap", "catetory": "Accessories", "sku": "0050", "stock": "in Stock", "price": "$80", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 29, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0051", "stock": "in Stock", "price": "$350", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 30, "ptitle": "Wooden Wall Clock", "catetory": "Accessories", "sku": "0052", "stock": "in Stock", "price": "$555", "pdetail": "Wooden", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 31, "ptitle": "Bag", "catetory": "Accessories", "sku": "0056", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 32, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0058", "stock": "in Stock", "price": "$290", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 33, "ptitle": "Cap", "catetory": "Accessories", "sku": "0059", "stock": "in Stock", "price": "$200", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 34, "ptitle": "Belt", "catetory": "Accessories", "sku": "0060", "stock": "in Stock", "price": "$100", "pdetail": "Lather", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 35, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0061", "stock": "in Stock", "price": "$290", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 36, "ptitle": "Bag", "catetory": "Accessories", "sku": "0062", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 37, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0063", "stock": "in Stock", "price": "$150", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 38, "ptitle": "Cap", "catetory": "Accessories", "sku": "0064", "stock": "in Stock", "price": "$100", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 39, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0065", "stock": "in Stock", "price": "$550", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 40, "ptitle": "Wooden Wall Clock", "catetory": "Accessories", "sku": "0066", "stock": "in Stock", "price": "$555", "pdetail": "Wooden", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 41, "ptitle": "Bag", "catetory": "Accessories", "sku": "0056", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 42, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0058", "stock": "in Stock", "price": "$290", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 43, "ptitle": "Cap", "catetory": "Accessories", "sku": "0059", "stock": "in Stock", "price": "$200", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 44, "ptitle": "Belt", "catetory": "Accessories", "sku": "0060", "stock": "in Stock", "price": "$100", "pdetail": "Lather", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 45, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0061", "stock": "in Stock", "price": "$290", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 46, "ptitle": "Bag", "catetory": "Accessories", "sku": "0062", "stock": "in Stock", "price": "$150", "pdetail": "Polyester", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 47, "ptitle": "Sun Glass", "catetory": "Accessories", "sku": "0063", "stock": "in Stock", "price": "$150", "pdetail": "Plastic", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 48, "ptitle": "Cap", "catetory": "Accessories", "sku": "0064", "stock": "in Stock", "price": "$100", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 49, "ptitle": "Black Hoodie", "catetory": "Accessories", "sku": "0065", "stock": "in Stock", "price": "$550", "pdetail": "Cotton", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+                { "sno": 50, "ptitle": "Wooden Wall Clock", "catetory": "Accessories", "sku": "0066", "stock": "in Stock", "price": "$555", "pdetail": "Wooden", "quanty": "1", "adCart": "Add to Cart", "qview": "Quick View", "offers": "10% Off" },
+            ]
+
+        }
+
+        function myTable(tblid, myData) {
+            debugger
+            let total_width = 0;
+            const _tbl_id = tblid;
+            const dynamicTable = document.createElement('table');
+            dynamicTable.setAttribute('id', _tbl_id);
+            dynamicTable.classList.add('table', 'table-sm', 'table-bordered');
+            const thead = document.createElement('thead');
+            dynamicTable.appendChild(thead);
+            thead.classList.add('thead-dark');
+            thead.style.position = 'sticky';
+            thead.style.top = '0';
+            const tableBody = document.createElement('tbody');
+            dynamicTable.appendChild(tableBody);
+            Object.size = function (obj) {
+                var size = 0,
+                    key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) size++;
+                }
+                return size;
+            };
+            let tableHtml = `<tr>`;
+            for (const data of myData.header) {
+                let wid = Object.values(data)[1];
+                wid = Number(wid.replace('px', ''));
+                total_width += wid;
+                // wid.split('px')[0]
+                tableHtml += `<th style="width: ${Object.values(data)[1]}">${Object.values(data)[0]}</th>`;
+            }
+            tableHtml += `</tr>`;
+            thead.innerHTML = tableHtml;
+
+            let i = 0;
+            for (const data of myData.feilds) {
+                let tdWid = Object.size(data);
+                const size = Object.size(data);
+                let tableHtml = `<tr>`;
+                for (const cell in data) {
+                    const w = myData.header.filter((el) => el[cell])[0].width;
+                    tableHtml += `<td style="${w}">${data[cell]}</td>`
+                }
+                tableHtml += `</tr>`;
+                tableBody.innerHTML += tableHtml;
+                i++;
+            }
+
+            dynamicTable.style.width = total_width + 'px';
+            dynamicTable.style.minWidth = total_width + 'px';
+
+            const tblOuter = document.createElement('div');
+            tblOuter.classList.add('tblOuter');
+         
+            tblOuter.setAttribute("id", tblid + 'scrOuter');
+            tblOuter.style.overflow = "hidden";
+            tblOuter.appendChild(dynamicTable);
+            const total_height = myData["feilds"].length * 33;
+            const obj = {
+                tblObj: tblOuter,
+                t_width: total_width,
+                t_height: total_height,
+            }
+            return obj;
+        }
+
+        function createTable(gridobj) {
+            debugger
+            const grid = gridobj["gridId"];
+            const obj_1 = gridobj["freezData"];
+            const obj_2 = gridobj["scrollData"];
+            const tableWrapper = document.createElement('div');
+            grid.appendChild(tableWrapper);
+            tableWrapper.classList.add('tableWrapper', 'container-fluid');
+            const gridCover = document.createElement('div');
+            tableWrapper.appendChild(gridCover);
+            gridCover.classList.add('gridCover');
+            gridCover.style.display = 'flex';
+            gridCover.style.overflow = 'hidden';
+            let winhgt = gridObj.wHight;
+            let cover = document.querySelector(".gridCover");
+            cover.style.height = winhgt + "px";
+
+            // Freeze table
+            const freezeTbl = document.createElement('div');
+            gridCover.appendChild(freezeTbl);
+            freezeTbl.classList.add('freezeTbl');
+            const resL = myTable('left_tbl', obj_1);
+            freezeTbl.append(resL["tblObj"]);
+            let leftTableWid = document.querySelector('#left_tbl');
+            let finalLeftwid = leftTableWid.offsetWidth;
+            let winWidth = gridObj.wWidth;
+            let finlwid = (winWidth - finalLeftwid) + 'px';
+          
+            // right side table
+            const scrollTbl = document.createElement('div');
+            gridCover.appendChild(scrollTbl);
+            scrollTbl.classList.add('scrollTbl');
+            scrollTbl.style.width = finlwid;
+            scrollTbl.style.overflow = 'hidden';
+            scrollTbl.style.position = 'relative';
+            const resR = myTable('right_tbl', obj_2);
+            scrollTbl.append(resR["tblObj"]);
+
+            // right scroll
+            const dynamicTableDiv = document.createElement('div');
+            scrollTbl.append(dynamicTableDiv);
+            dynamicTableDiv.setAttribute("id", 'rightSlider');
+            const _cssR = {
+                "background": "#ccc", "width": "18px", "height": "100%", "z-index": "99", "right": "0",
+                "top": "0", "position": "absolute", "overflow": "scroll"
+            }
+            $(dynamicTableDiv).css(_cssR);
+            const forDiv = document.createElement('div');
+            forDiv.style.height = resR["t_height"] + "px";
+            dynamicTableDiv.appendChild(forDiv);
+            forDiv.classList.add('childDiv');
+
+            // bottom scroll
+            const dynamicTableDiv2 = document.createElement('div');
+            scrollTbl.append(dynamicTableDiv2);
+            dynamicTableDiv2.setAttribute('id', "bottomSlider");
+            const _cssB = {
+                "background": "#ccc", "width": "100%", "height": "18px", "z-index": "98", "right":
+                    "0", "bottom": "0", "position": "absolute", "overflow": "scroll"
+            }
+            $(dynamicTableDiv2).css(_cssB);
+            const forDiv2 = document.createElement('div');
+            forDiv2.style.width = resR["t_width"] + "px";
+            dynamicTableDiv2.appendChild(forDiv2);
+            forDiv2.classList.add('forBottam');
+        }
+
+        const grid = document.getElementById('gridJsX');
+        const gridObj = {
+            gridId: grid,
+            freezData: obj_1,
+            scrollData: obj_2,
+            wHight: 500,
+            wWidth: 1200
+        }
+        createTable(gridObj);
+        (function () {
+            debugger
+            var target = $("#right_tblscrOuter");
+            var freeze = $("#left_tblscrOuter");
+            $("#bottomSlider").scroll(
+                function () {
+                    target.prop("scrollTop", this.scrollTop).prop("scrollLeft", this.scrollLeft);
+                });
+            $("#rightSlider").scroll(
+                function () {
+                    target.prop("scrollTop", this.scrollTop).prop("scrollLeft", this.scrollLeft);
+                    freeze.prop("scrollTop", this.scrollTop).prop("scrollLeft", this.scrollLeft);
+                });
+        })();
+
+    </script>
+</body>
+
+</html>

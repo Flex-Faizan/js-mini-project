@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <style>
+    #sortable {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 60%;
+    }
+
+    #sortable li {
+      margin: 0 3px 3px 3px;
+      padding: 0.4em;
+      padding-left: 1.5em;
+      font-size: 1.4em;
+      height: 18px;
+    }
+
+    #sortable li span {
+      position: absolute;
+      margin-left: -1.3em;
+    }
+
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60%;
+      margin-top: 10px;
+    }
+
+    .btnWrap .btn {
+      width: 100px;
+      height: 30px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script>
+    $(function () {
+      $("#sortable").sortable();
+    });
+
+    function save() {
+      let sort = document.getElementById('sortable').getElementsByTagName('li')
+      let arr = [];
+      for (let i = 0; i < sort.length; i++) {
+        arr.push(sort[i].innerText);
+      }
+      let outPut = JSON.stringify(arr);
+      console.log(outPut)
+      return outPut;
+    }
+    function sortElm() {
+      let res = save();
+      let newArray = JSON.parse(res);
+      let arr = newArray.sort();
+      let sort = document.querySelectorAll('#sortable li')
+      arr.forEach(element => {
+        sort.forEach(ele => {
+          if(element != ele.innerText){
+              ele.innerText;
+          }
+        });
+      });
+
+      // res.sort(function () {
+      //   return res;
+      // })
+      // console.log(newArr)
+
+    }
+  </script>
+</head>
+
+<body>
+
+  <ul id="sortable">
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+  </ul>
+  <div class="btnWrap">
+    <button type="button" class="btn" onclick="sortElm();">Reset</button>
+    <button type="button" class="btn" onclick="save();">Save</button>
+  </div>
+  <div id="print"></div>
+</body>
+
+</html>
